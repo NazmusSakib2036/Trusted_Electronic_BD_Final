@@ -1,0 +1,4 @@
+﻿"Customer ID",Name,Email,Phone,Status,"Registration Date","Date of Birth",Gender,"Address Line 1","Address Line 2",City,State,"Postal Code",Country,"Total Orders","Total Spent","Last Order Date"
+1,"Fahim Shariar",shariarfahim21@gmail.com,01892382840,Active,"2025-09-21 21:13:39",,,"Jordia, Satkhira, Satkhira, Mymensingh",,,,,,2,160.00,"2025-09-21 21:53:53"
+2,test,Shariarf39@gmail.com,01892382840,Active,"2025-09-21 21:28:59",,,"Dhaka, Bangladesh., Dhaka, Rangpur",,,,,,1,80.00,"2025-09-21 21:28:59"
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Order Creation</title>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+<body>
+    <div x-data="{
+        customerName: '',
+        customerEmail: '',
+        customerPhone: '',
+        result: '',
+        
+        async testOrder() {
+            console.log('Testing order with:', {
+                customer_name: this.customerName,
+                customer_email: this.customerEmail,
+                customer_phone: this.customerPhone
+            });
+            
+            try {
+                const response = await fetch('/api/admin/orders', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        customer_name: this.customerName,
+                        customer_email: this.customerEmail,
+                        customer_phone: this.customerPhone,
+                        shipping_address: 'Test Address',
+                        postal_code: '1234',
+                        payment_method: 'cod',
+                        subtotal: 100,
+                        total: 100,
+                        items: [{
+                            product_id: 1,
+                            product_name: 'Test Product',
+                            quantity: 1,
+                            price: 100,
+                            total: 100
+                        }]
+                    })
+                });
+                
+                const data = await response.json();
+                this.result = JSON.stringify(data, null, 2);
+                console.log('Response:', data);
+            } catch (error) {
+                console.error('Error:', error);
+                this.result = 'Error: ' + error.message;
+            }
+        }
+    }" class="p-8">
+        <h1 class="text-2xl font-bold mb-6">Test Order Creation</h1>
+        
+        <div class="mb-4">
+            <label class="block mb-2">Customer Name:</label>
+            <input type="text" x-model="customerName" class="border p-2 w-full" placeholder="Enter customer name">
+        </div>
+        
+        <div class="mb-4">
+            <label class="block mb-2">Customer Email:</label>
+            <input type="email" x-model="customerEmail" class="border p-2 w-full" placeholder="Enter customer email">
+        </div>
+        
+        <div class="mb-4">
+            <label class="block mb-2">Customer Phone:</label>
+            <input type="tel" x-model="customerPhone" class="border p-2 w-full" placeholder="Enter customer phone">
+        </div>
+        
+        <button @click="testOrder()" class="bg-blue-500 text-white px-4 py-2 rounded">Test Order</button>
+        
+        <div class="mt-6">
+            <h2 class="text-lg font-semibold mb-2">Result:</h2>
+            <pre x-text="result" class="bg-gray-100 p-4 whitespace-pre-wrap"></pre>
+        </div>
+    </div>
+</body>
+</html>

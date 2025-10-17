@@ -1,0 +1,2 @@
+[30-Sep-2025 05:23:22 UTC] PHP Fatal error:  Cannot use positional argument after named argument in /home/trustede/public_html/app/Http/Controllers/Admin/ProductController.php on line 258
+[30-Sep-2025 05:23:24 UTC] PHP Fatal error:  Cannot use positional argument after named argument in /home/trustede/public_html/app/Http/Controllers/Admin/ProductController.php on line 258

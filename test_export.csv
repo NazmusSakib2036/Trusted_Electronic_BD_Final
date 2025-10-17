@@ -1,0 +1,5 @@
+﻿"Order Number","Customer Name","Customer Email","Order Date",Status,"Payment Status","Payment Method",Subtotal,"Tax Amount","Shipping Amount","Discount Amount","Total Amount","Shipping Address","Items Count",Products
+ORD-68D073F16A235,"Fahim Shariar",shariarfahim21@gmail.com,"2025-09-21 21:53:53",Delivered,Pending,Cod,10,0.00,70.00,0.00,80.00,"Dhaka, Bangladesh., Dhaka, Chittagong, , , 9400",1,"test (Qty: 1)"
+ORD-68D0725143BB3,"Fahim Shariar",shariarfahim21@gmail.com,"2025-09-21 21:46:57",Delivered,Pending,Cod,10,0.00,70.00,0.00,80.00,"Jordia, Satkhira, Satkhira, Chittagong, , , 9400",1,"test (Qty: 1)"
+ORD-68D06E1B25013,test,Shariarf39@gmail.com,"2025-09-21 21:28:59",Pending,Pending,Cod,10,0.00,70.00,0.00,80.00,"Dhaka, Bangladesh., Dhaka, Rangpur, , , 1203",1,"test (Qty: 1)"
+
