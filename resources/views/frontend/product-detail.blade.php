@@ -33,11 +33,27 @@
                 <div class="container mx-auto px-4">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
                         <div class="space-y-4">
-                            <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden relative">
-                                <img x-show="!isVideoSelected && selectedImage" :src="selectedImage" :alt="product?.name"
-                                    class="w-full h-full object-cover">
 
-                                <div x-show="isVideoSelected" class="w-full h-full">
+
+                            <!-- main image or video display -->
+
+                            <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden relative z-30">
+                                
+                                <div x-show="!isVideoSelected" class="w-full h-full relative z-40">
+                                    <img x-show="selectedImage" :src="selectedImage" :alt="product?.name"
+                                         class="w-full h-full object-cover">
+                                    
+                                    <div x-show="!selectedImage"
+                                         class="w-full h-full flex items-center justify-center text-gray-400">
+                                        <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <div x-show="isVideoSelected" class="w-full h-full relative z-30 overflow-hidden">
                                     <iframe x-show="videoEmbedUrl" :src="videoEmbedUrl" :key="videoEmbedUrl" class="w-full h-full"
                                         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen>
@@ -50,16 +66,10 @@
                                         </svg>
                                     </div>
                                 </div>
-                                
-                                <div x-show="!isVideoSelected && !selectedImage"
-                                    class="w-full h-full flex items-center justify-center text-gray-400">
-                                    <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd"
-                                            d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </div>
                             </div>
+
+
+                            <!-- image & video thumbnails -->
 
                             <div class="grid grid-cols-4 gap-2">
                                 <template x-if="getYouTubeThumbnail()">
@@ -68,7 +78,7 @@
                                         @click="selectVideo(true)">
                                         <img :src="getYouTubeThumbnail()" :alt="`${product?.name} - Video Thumbnail`"
                                             class="w-full h-full object-cover group-hover:opacity-75 transition-opacity">
-                                        <svg class="absolute inset-0 m-auto w-12 h-12 text-white opacity-80 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24">
+                                        <svg class="absolute inset-0 m-auto w-12 h-12 text-white opacity-0 group-hover:opacity-0 transition-opacity" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M6.3 5.4C8.7 3.5 12 1.9 12 1.9s3.3 1.6 5.7 3.5c2.4 1.9 4 4.1 4 6.6 0 3.9-3.2 7-7 7H7c-3.9 0-7-3.1-7-7 0-2.5 1.6-4.7 4-6.6zM15 12l-6 3V9l6 3z"/>
                                         </svg>
                                     </div>
@@ -152,7 +162,7 @@
                                 </button>
                             </div>
 
-                            <div class="border-t pt-6">
+                            <!-- <div class="border-t pt-6">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                                     <div class="flex items-center space-x-2">
                                         <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
@@ -187,7 +197,7 @@
                                         <span x-text="$store.translationStore.translate('secure_payment')"></span>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -317,13 +327,12 @@
                     if (this.product) {
                         this.selectedImage = this.product.images?.[0] || null;
                         
-                        // **FIXED: Check for video and select it first if available**
+                        // Check for video and select it first if available
                         if (this.getYouTubeVideoId()) {
                             this.selectVideo(true); // Selects video and starts autoplay
                         } else if (this.selectedImage) {
                             this.selectImage(this.selectedImage); // Fallback to first image
                         }
-                        // ********************************************************
 
                         await this.loadRelatedProducts();
                     }

@@ -275,13 +275,21 @@ class SmsService
     private function buildOrderStatusMessage($order, $status)
     {
         $messages = [
-            'pending' => "Dear {customer}, your order #{order_id} is being processed. Total: {total}. We'll notify you once it's ready. Thanks! - TrustedElectronics",
-            'confirmed' => "Great news! Your order #{order_id} has been confirmed. Total: {total}. We're preparing your items. Thanks for choosing TrustedElectronics!",
-            'processing' => "Your order #{order_id} is now being processed. Total: {total}. We'll update you on shipping details soon. - TrustedElectronics",
-            'shipped' => "Your order #{order_id} has been shipped! Total: {total}. Track your delivery for updates. Thanks! - TrustedElectronics",
-            'delivered' => "Order #{order_id} delivered successfully! Total: {total}. Thank you for shopping with TrustedElectronics. Rate your experience!",
-            'cancelled' => "Sorry, your order #{order_id} has been cancelled. Total: {total}. Refund will be processed if applicable. Contact us for support. - TrustedElectronics"
+            'pending' => "Trusted Electronic BD থেকে আপনার অডার টি Pending করা হয়েছে",
+            'confirmed' => "Trusted Electronic BD থেকে আপনার অডার টি Confirm করা হয়েছে",
+            'processing' => "Trusted Electronic BD থেকে আপনার অডার টি Processing করা হচ্ছে",
+            'shipped' => "Trusted Electronic BD থেকে আপনার অডার টি Shipped করা হয়েছে",
+            'delivered' => "Trusted Electronic BD থেকে আপনার অডার টি Delivered করা হয়েছে",
+            'cancelled' => "Trusted Electronic BD থেকে আপনার অডার টি Cancelled করা হয়েছে"
         ];
+        // $messages = [
+        //     'pending' => "Dear {customer}, your order #{order_id} is being processed. Total: {total}. We'll notify you once it's ready. Thanks! - TrustedElectronics",
+        //     'confirmed' => "Great news! Your order #{order_id} has been confirmed. Total: {total}. We're preparing your items. Thanks for choosing TrustedElectronics!",
+        //     'processing' => "Your order #{order_id} is now being processed. Total: {total}. We'll update you on shipping details soon. - TrustedElectronics",
+        //     'shipped' => "Your order #{order_id} has been shipped! Total: {total}. Track your delivery for updates. Thanks! - TrustedElectronics",
+        //     'delivered' => "Order #{order_id} delivered successfully! Total: {total}. Thank you for shopping with TrustedElectronics. Rate your experience!",
+        //     'cancelled' => "Sorry, your order #{order_id} has been cancelled. Total: {total}. Refund will be processed if applicable. Contact us for support. - TrustedElectronics"
+        // ];
 
         $template = $messages[$status] ?? "Order #{order_id} status updated to: {status}. Total: {total}. - TrustedElectronics";
         

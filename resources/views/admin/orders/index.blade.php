@@ -272,7 +272,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> <br> <br> <br> <br> <br>
 
     <!-- Order Details Modal -->
     <div x-show="showOrderDetails" 

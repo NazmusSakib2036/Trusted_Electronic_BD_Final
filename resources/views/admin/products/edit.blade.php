@@ -225,7 +225,7 @@
 
                 <!-- Category & Status -->
                 <div>
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Category & Status</h3>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Category</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Category *</label>
@@ -237,7 +237,7 @@
                                 </template>
                             </select>
                         </div>
-                        <div>
+                        <!-- <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
                             <div class="flex items-center space-x-4 mt-2">
                                 <label class="flex items-center">
@@ -249,7 +249,7 @@
                                     <span class="ml-2 text-sm text-gray-700">Featured</span>
                                 </label>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 

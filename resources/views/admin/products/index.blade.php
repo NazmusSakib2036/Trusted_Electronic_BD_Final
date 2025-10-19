@@ -169,9 +169,9 @@
                                 <div class="flex space-x-2">
                                     <a :href="'/admin/products/' + product.id + '/edit'" 
                                        class="text-blue-600 hover:text-blue-900">Edit</a>
-                                    <button @click="toggleFeatured(product)" 
+                                    <!-- <button @click="toggleFeatured(product)" 
                                             class="text-purple-600 hover:text-purple-900"
-                                            x-text="product.is_featured ? 'Unfeature' : 'Feature'"></button>
+                                            x-text="product.is_featured ? 'Unfeature' : 'Feature'"></button> -->
                                     <button @click="deleteProduct(product)" 
                                             class="text-red-600 hover:text-red-900">Delete</button>
                                 </div>
@@ -219,7 +219,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> <br> <br> <br> <br> <br> <br> <br> <br>
 @endsection
 
 @push('scripts')

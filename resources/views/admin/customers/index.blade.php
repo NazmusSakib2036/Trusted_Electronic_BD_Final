@@ -95,8 +95,8 @@
                        placeholder="Search customers..."
                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
             </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+            <!-- <div>
+               <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
                 <select x-model="filters.status" 
                         @change="filterCustomers()"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
@@ -104,7 +104,7 @@
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
                 </select>
-            </div>
+            </div> -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Registration Date</label>
                 <select x-model="filters.date_range" 
@@ -196,10 +196,10 @@
                                         class="text-green-600 hover:text-green-900">
                                     Edit
                                 </button>
-                                <button @click="toggleStatus(customer)" 
+                                <!-- <button @click="toggleStatus(customer)" 
                                         :class="customer.is_active ? 'text-red-600 hover:text-red-900' : 'text-green-600 hover:text-green-900'">
                                     <span x-text="customer.is_active ? 'Deactivate' : 'Activate'"></span>
-                                </button>
+                                </button> -->
                             </td>
                         </tr>
                     </template>
@@ -259,7 +259,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> <br> <br> <br> <br> <br>
 
     <!-- Customer Details Modal -->
     <div x-show="showCustomerDetails" 
@@ -286,7 +286,7 @@
                                 <div><span class="font-medium">Phone:</span> <span x-text="selectedCustomer?.phone || 'N/A'"></span></div>
                                 <div><span class="font-medium">Division:</span> <span x-text="selectedCustomer?.division || 'Not specified'"></span></div>
                                 <div><span class="font-medium">District:</span> <span x-text="selectedCustomer?.district || 'Not specified'"></span></div>
-                                <div><span class="font-medium">Status:</span> <span x-text="selectedCustomer?.is_active ? 'Active' : 'Inactive'"></span></div>
+                                <!-- <div><span class="font-medium">Status:</span> <span x-text="selectedCustomer?.is_active ? 'Active' : 'Inactive'"></span></div> -->
                                 <div><span class="font-medium">Joined:</span> <span x-text="formatDate(selectedCustomer?.created_at)"></span></div>
                             </div>
                         </div>
@@ -294,8 +294,8 @@
                             <h4 class="font-medium text-gray-900 mb-3">Order Statistics</h4>
                             <div class="space-y-2 text-sm">
                                 <div><span class="font-medium">Total Orders:</span> <span x-text="selectedCustomer?.orders_count || 0"></span></div>
-                                <div><span class="font-medium">Total Spent:</span> <span x-text="'$' + parseFloat(selectedCustomer?.total_spent || 0).toFixed(2)"></span></div>
-                                <div><span class="font-medium">Average Order:</span> <span x-text="'$' + (selectedCustomer?.orders_count ? (selectedCustomer.total_spent / selectedCustomer.orders_count).toFixed(2) : '0.00')"></span></div>
+                                <div><span class="font-medium">Total Spent:</span> <span x-text="'৳' + parseFloat(selectedCustomer?.total_spent || 0).toFixed(2)"></span></div>
+                                <div><span class="font-medium">Average Order:</span> <span x-text="'৳' + (selectedCustomer?.orders_count ? (selectedCustomer.total_spent / selectedCustomer.orders_count).toFixed(2) : '0.00')"></span></div>
                                 <div><span class="font-medium">Last Order:</span> <span x-text="selectedCustomer?.last_order_date ? formatDate(selectedCustomer.last_order_date) : 'Never'"></span></div>
                             </div>
                         </div>
@@ -446,14 +446,14 @@
                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
                     </div>
 
-                    <div class="mb-6">
+                    <!-- <div class="mb-6">
                         <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
                         <select x-model="customerForm.is_active" 
                                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                             <option value="1">Active</option>
                             <option value="0">Inactive</option>
                         </select>
-                    </div>
+                    </div> -->
 
                     <div class="flex items-center gap-3">
                         <button type="submit" 

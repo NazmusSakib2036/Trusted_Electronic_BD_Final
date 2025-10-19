@@ -4,7 +4,6 @@
 
 @section('content')
 <div x-data="categoriesManager()" x-init="init()">
-    <!-- Header -->
     <div class="mb-6 flex items-center justify-between">
         <div>
             <h1 class="text-2xl font-bold text-gray-900">Categories</h1>
@@ -19,26 +18,15 @@
         </button>
     </div>
 
-    <!-- Filters -->
     <div class="bg-white p-4 rounded-lg shadow-sm mb-6">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Search</label>
                 <input type="text" 
-                       x-model="filters.search" 
-                       @input="filterCategories()"
-                       placeholder="Search categories..."
-                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                <select x-model="filters.status" 
-                        @change="filterCategories()"
+                        x-model="filters.search" 
+                        @input="filterCategories()"
+                        placeholder="Search categories..."
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                    <option value="">All Status</option>
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                </select>
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Parent Category</label>
@@ -55,7 +43,6 @@
         </div>
     </div>
 
-    <!-- Categories Table -->
     <div class="bg-white rounded-lg shadow-sm overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full">
@@ -75,11 +62,9 @@
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0 h-10 w-10">
-                                        <!-- Show image if available -->
                                         <template x-if="category.image">
                                             <img :src="category.image" :alt="category.name" class="h-10 w-10 rounded-lg object-cover">
                                         </template>
-                                        <!-- Fallback to gradient with initial -->
                                         <template x-if="!category.image">
                                             <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
                                                 <span class="text-white font-semibold text-sm" x-text="category.name.charAt(0).toUpperCase()"></span>
@@ -97,10 +82,10 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <span :class="{
-                                    'inline-flex px-2 py-1 text-xs font-semibold rounded-full': true,
-                                    'bg-green-100 text-green-800': category.status === 'active',
-                                    'bg-red-100 text-red-800': category.status === 'inactive'
-                                }" x-text="category.status.charAt(0).toUpperCase() + category.status.slice(1)"></span>
+                                        'inline-flex px-2 py-1 text-xs font-semibold rounded-full': true,
+                                        'bg-green-100 text-green-800': category.status === 'active',
+                                        'bg-red-100 text-red-800': category.status === 'inactive'
+                                    }" x-text="category.status.charAt(0).toUpperCase() + category.status.slice(1)"></span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 <span x-text="category.products_count || 0"></span> products
@@ -113,10 +98,6 @@
                                         class="text-blue-600 hover:text-blue-900">
                                     Edit
                                 </button>
-                                <button @click="toggleStatus(category)" 
-                                        :class="category.status === 'active' ? 'text-red-600 hover:text-red-900' : 'text-green-600 hover:text-green-900'">
-                                    <span x-text="category.status === 'active' ? 'Deactivate' : 'Activate'"></span>
-                                </button>
                                 <button @click="deleteCategory(category)" 
                                         class="text-red-600 hover:text-red-900">
                                     Delete
@@ -128,7 +109,6 @@
             </table>
         </div>
 
-        <!-- Pagination -->
         <div class="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
             <div class="flex items-center justify-between">
                 <div class="flex-1 flex justify-between sm:hidden">
@@ -180,12 +160,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> <br> <br> <br> <br> <br>
 
-    <!-- Create/Edit Modal -->
     <div x-show="showCreateForm || showEditForm" 
-         class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50"
-         x-transition>
+          class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50"
+          x-transition>
         <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
             <div class="mt-3">
                 <h3 class="text-lg font-medium text-gray-900 mb-4" x-text="showEditForm ? 'Edit Category' : 'Create New Category'"></h3>
@@ -194,19 +173,18 @@
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-1">Name *</label>
                         <input type="text" 
-                               x-model="categoryForm.name" 
-                               required
-                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                x-model="categoryForm.name" 
+                                required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                     </div>
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
                         <textarea x-model="categoryForm.description" 
-                                  rows="3"
-                                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                                    rows="3"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
                     </div>
 
-                    <!-- Category Image Upload -->
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Category Image</label>
                         <div class="border-2 border-dashed border-gray-300 rounded-lg p-4">
@@ -226,7 +204,6 @@
                             </div>
                         </div>
                         
-                        <!-- Image Preview -->
                         <div x-show="categoryForm.image" class="mt-4">
                             <div class="relative inline-block">
                                 <img :src="getImagePreview()" alt="Category image" class="w-20 h-20 object-cover rounded-lg border">
@@ -251,15 +228,6 @@
                         </select>
                     </div>
 
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                        <select x-model="categoryForm.status" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                            <option value="active">Active</option>
-                            <option value="inactive">Inactive</option>
-                        </select>
-                    </div>
-
                     <div class="flex items-center gap-3">
                         <button type="submit" 
                                 :disabled="isLoading"
@@ -278,14 +246,13 @@
         </div>
     </div>
 
-    <!-- Notification -->
     <div x-show="notification.show" 
-         x-transition
-         :class="{
-             'fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50': true,
-             'bg-green-500 text-white': notification.type === 'success',
-             'bg-red-500 text-white': notification.type === 'error'
-         }">
+          x-transition
+          :class="{
+              'fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50': true,
+              'bg-green-500 text-white': notification.type === 'success',
+              'bg-red-500 text-white': notification.type === 'error'
+          }">
         <span x-text="notification.message"></span>
     </div>
 </div>
@@ -337,7 +304,8 @@ function categoriesManager() {
                 if (response.ok) {
                     const data = await response.json();
                     this.categories = data.data || data;
-                    this.allCategories = [...this.categories];
+                    // Ensure allCategories is sorted alphabetically for the parent dropdown consistency
+                    this.allCategories = [...this.categories].sort((a, b) => a.name.localeCompare(b.name)); 
                 } else {
                     throw new Error('Failed to load categories');
                 }
@@ -369,12 +337,23 @@ function categoriesManager() {
             if (this.filters.parent === 'root') {
                 filtered = filtered.filter(category => !category.parent_id);
             } else if (this.filters.parent) {
+                // Ensure comparison with integer if parent_id is integer
                 filtered = filtered.filter(category => category.parent_id === parseInt(this.filters.parent));
             }
             
+            // ⭐ FIX: Default Sorting Logic (Latest Added First: by created_at descending)
+            filtered.sort((a, b) => {
+                const dateA = new Date(a.created_at);
+                const dateB = new Date(b.created_at);
+                // Compare timestamps: b - a gives newest first (descending)
+                return dateB - dateA;
+            });
+            // ⭐ END FIX
+
             this.filteredCategories = filtered;
             this.totalPages = Math.ceil(filtered.length / this.perPage);
-            this.currentPage = 1;
+            // Reset to page 1 after filtering/sorting
+            this.currentPage = 1; 
             this.updatePagination();
         },
 
@@ -422,28 +401,41 @@ function categoriesManager() {
             this.updatePagination();
         },
 
+        // --- CRUD Methods ---
+
         async createCategory() {
             try {
                 this.isLoading = true;
+                
+                // Prepare form data for sending (including the image data URL if present)
+                const formData = {
+                    name: this.categoryForm.name,
+                    description: this.categoryForm.description,
+                    parent_id: this.categoryForm.parent_id || null,
+                    status: this.categoryForm.status,
+                    image: this.categoryForm.image // Send data URL or path
+                };
+
                 const response = await fetch(`${window.API_BASE}/categories`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                     },
-                    body: JSON.stringify(this.categoryForm)
+                    body: JSON.stringify(formData)
                 });
 
                 if (response.ok) {
-                    await this.loadCategories();
-                    this.filterCategories();
+                    await this.loadCategories(); // Reload data
+                    this.filterCategories(); // Re-filter and sort (newly created will be at top)
                     this.closeModal();
                     this.showNotification('Category created successfully!', 'success');
                 } else {
-                    throw new Error('Failed to create category');
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Failed to create category');
                 }
             } catch (error) {
-                this.showNotification('Failed to create category', 'error');
+                this.showNotification(error.message || 'Failed to create category', 'error');
             } finally {
                 this.isLoading = false;
             }
@@ -454,7 +446,8 @@ function categoriesManager() {
             this.categoryForm = {
                 name: category.name,
                 description: category.description || '',
-                image: category.image || '',
+                // Keep the existing image path/URL in the form for editing
+                image: category.image || '', 
                 parent_id: category.parent_id || '',
                 status: category.status
             };
@@ -464,13 +457,22 @@ function categoriesManager() {
         async updateCategory() {
             try {
                 this.isLoading = true;
+
+                const formData = {
+                    name: this.categoryForm.name,
+                    description: this.categoryForm.description,
+                    parent_id: this.categoryForm.parent_id || null,
+                    status: this.categoryForm.status,
+                    image: this.categoryForm.image
+                };
+
                 const response = await fetch(`${window.API_BASE}/categories/${this.editingCategory.id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                     },
-                    body: JSON.stringify(this.categoryForm)
+                    body: JSON.stringify(formData)
                 });
 
                 if (response.ok) {
@@ -479,35 +481,13 @@ function categoriesManager() {
                     this.closeModal();
                     this.showNotification('Category updated successfully!', 'success');
                 } else {
-                    throw new Error('Failed to update category');
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Failed to update category');
                 }
             } catch (error) {
-                this.showNotification('Failed to update category', 'error');
+                this.showNotification(error.message || 'Failed to update category', 'error');
             } finally {
                 this.isLoading = false;
-            }
-        },
-
-        async toggleStatus(category) {
-            try {
-                const newStatus = category.status === 'active' ? 'inactive' : 'active';
-                const response = await fetch(`${window.API_BASE}/categories/${category.id}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                    },
-                    body: JSON.stringify({ ...category, status: newStatus })
-                });
-
-                if (response.ok) {
-                    category.status = newStatus;
-                    this.showNotification(`Category ${newStatus === 'active' ? 'activated' : 'deactivated'} successfully!`, 'success');
-                } else {
-                    throw new Error('Failed to update category status');
-                }
-            } catch (error) {
-                this.showNotification('Failed to update category status', 'error');
             }
         },
 
@@ -535,6 +515,8 @@ function categoriesManager() {
                 this.showNotification('Failed to delete category', 'error');
             }
         },
+        
+        // --- Utility Methods ---
 
         closeModal() {
             this.showCreateForm = false;
@@ -547,6 +529,9 @@ function categoriesManager() {
                 parent_id: '',
                 status: 'active'
             };
+            // Manually clear the file input field if it's not handled by the Alpine reset
+            const fileInput = document.getElementById('category-image');
+            if (fileInput) fileInput.value = '';
         },
 
         formatDate(dateString) {
@@ -566,20 +551,19 @@ function categoriesManager() {
             if (file && file.type.startsWith('image/')) {
                 if (file.size > 2 * 1024 * 1024) { // 2MB limit
                     this.showNotification('Image size must be less than 2MB', 'error');
+                    // Reset file input to prevent submitting large file
+                    event.target.value = '';
                     return;
                 }
                 
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    this.categoryForm.image = e.target.result;
+                    this.categoryForm.image = e.target.result; // Store base64 or object URL
                 };
                 reader.readAsDataURL(file);
             } else {
                 this.showNotification('Please select a valid image file', 'error');
             }
-            
-            // Clear the input so the same file can be selected again
-            event.target.value = '';
         },
 
         getImagePreview() {
@@ -588,6 +572,9 @@ function categoriesManager() {
 
         removeImage() {
             this.categoryForm.image = '';
+            // Also reset the file input field if needed (though it's usually handled by the modal close)
+            const fileInput = document.getElementById('category-image');
+            if (fileInput) fileInput.value = '';
         }
     }
 }

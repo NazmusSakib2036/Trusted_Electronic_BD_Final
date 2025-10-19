@@ -67,7 +67,21 @@
         /* WhatsApp button styles */
         .whatsapp-fixed-btn {
             position: fixed;
-            bottom: 24px;
+            bottom: 20px;
+            right: 24px;
+            z-index: 9999;
+            padding: 16px;
+            border-radius: 9999px;
+            background-color: #25D366 !important;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .messenger-fixed-btn {
+            position: fixed;
+            bottom: 100px;
             right: 24px;
             z-index: 9999;
             padding: 16px;
@@ -80,12 +94,12 @@
             transition: all 0.3s ease;
         }
 
-        .whatsapp-fixed-btn:hover {
-            background-color: #128C7E !important;
-            transform: scale(1.1);
+        .whatsapp-fixed-btn .fa-whatsapp{
+            color: white !important;
+            font-size: 32px !important;
+            line-height: 1;
         }
-
-        .whatsapp-fixed-btn .fa-whatsapp {
+        .messenger-fixed-btn .fa-facebook-messenger {
             color: white !important;
             font-size: 32px !important;
             line-height: 1;
@@ -121,9 +135,9 @@
 </head>
 
 <body class="bg-gray-50" x-data="appStore()" x-init="init()">
-    <div class="bg-red-600 text-white text-center py-2 text-sm cursor-pointer">
+    <div class="bg-red-600 text-white text-center py-1 cursor-pointer" style="font-size: .7rem;">
         <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
-            <b>Trusted Electronic BD</b> - তে আপনাকে স্বাগতম। বিশেষ অফার: আজই অর্ডার করুন এবং ১৫% ছাড় পান!
+            <b>Trusted Electronic BD</b> - তে আপনাকে স্বাগতম । আমাদের থেকে নতুন লিথিয়্যাম ফসফেট ব্যাটারি দিয়ে 12v-24v ব্যাটারি প্যাক বানিয়ে নিতে পারবেন।
         </marquee>
     </div>
 
@@ -168,7 +182,7 @@
                         </svg>
 
                         <span class="text-sm font-bold"
-                            x-text="$store.translationStore.currentLanguage === 'english' ? 'BN' : 'ENG'">
+                            x-text="$store.translationStore.currentLanguage === 'english' ? 'BN' : 'EN'">
                         </span>
                     </button>
 
@@ -232,8 +246,8 @@
                 <div class="footer-col-flexstart">
                     <h3 class="font-semibold mb-4 text-lg">Contact Us</h3>
                     <div class="space-y-2 text-sm">
-                        <p><a href="mailto:trustedelectronicbd.info@gmail.com"
-                                class="hover:text-blue-400 transition duration-150">trustedelectronicbd.info@gmail.com</a>
+                        <p><a href="mailto:robinhossain70000@gmail.com"
+                                class="hover:text-blue-400 transition duration-150">robinhossain70000@gmail.com</a>
                         </p>
                         <p><a href="tel:+8801888058362"
                                 class="hover:text-blue-400 transition duration-150">+8801888058362</a></p>
@@ -256,6 +270,11 @@
     <a href="https://wa.me/8801888058362" title="Chat on WhatsApp" class="whatsapp-fixed-btn" target="_blank"
         aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <a href="https://m.me/335879172950893?source=qr_link_share" title="Chat on Messenger" class="messenger-fixed-btn" target="_blank"
+        aria-label="Chat on Messenger">
+        <i class="fab fa-facebook-messenger"></i>
     </a>
 
     <!-- Sticky cart pill (shows when cart has items) -->
